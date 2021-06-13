@@ -1,8 +1,10 @@
 extends PushTileElement
 class_name Enemy
 
-export (PackedScene) var move_arrow
-export (PackedScene) var hit_arrow
+export (PackedScene) var move_arrow_up
+export (PackedScene) var hit_arrow_up
+export (PackedScene) var move_arrow_down
+export (PackedScene) var hit_arrow_down
 export (String) var walk_anim
 export (String) var idle_anim
 
@@ -46,25 +48,6 @@ func plan_turn():
 		snake_plan_turn()
 	elif behaviour == all_behaviours.SLENDER:
 		slender_plan_turn()
-	
-	var i = 0
-	var offset = Vector2()
-	var arrow
-	for a in actions:
-		if a == all_actions.MOVE:
-			offset += actions_dir[i]
-			arrow = move_arrow.instance()
-			arrow.position = grid.map_to_world(offset)
-		elif a == all_actions.HIT:
-			arrow = hit_arrow.instance()
-			arrow.position = grid.map_to_world(offset + actions_dir[i])
-		
-		add_child(arrow)
-		if actions_dir[i].x < 0 or actions_dir[i].y > 0:
-			arrow.flip_h = true
-		if actions_dir[i].y > 0 or actions_dir[i]. x > 0:
-			arrow.flip_v = true
-		i += 1
 
 
 func base_plan_turn():
@@ -98,11 +81,26 @@ func wolf_plan_turn():
 		int_dir = Vector2(0, sign(float_dir.y))
 	
 	for _i in range(2):
-		if dist <= 19:
-			actions.append(all_actions.HIT)
-			actions_dir.append(int_dir)
+		actions.append(all_actions.HIT)
+		actions_dir.append(int_dir)
 		actions.append(all_actions.MOVE)
 		actions_dir.append(int_dir)
+	
+	var i = 0
+	var offset = Vector2()
+	var arrow
+	for a in actions:
+		if a == all_actions.MOVE:
+			offset += actions_dir[i]
+			if actions_dir[i].x > 0 or actions_dir[i].y > 0:
+				arrow = move_arrow_down.instance()
+			else:
+				arrow = move_arrow_up.instance()
+			arrow.position = grid.map_to_world(offset)
+			add_child(arrow)
+			if actions_dir[i].x < 0 or actions_dir[i].y > 0:
+				arrow.flip_h = true
+		i += 1
 
 
 func snake_plan_turn():
@@ -127,6 +125,33 @@ func snake_plan_turn():
 			actions.append(all_actions.HIT)
 		actions_dir.append(int_dir + side_dir)
 		actions_dir.append(int_dir - side_dir)
+	
+	var i = 0
+	var offset = Vector2()
+	var arrow
+	for a in actions:
+		if a == all_actions.MOVE:
+			offset += actions_dir[i]
+			if actions_dir[i].x > 0 or actions_dir[i].y > 0:
+				arrow = move_arrow_down.instance()
+			else:
+				arrow = move_arrow_up.instance()
+			arrow.position = grid.map_to_world(offset)
+			if actions_dir[i].x < 0 or actions_dir[i].y > 0:
+				arrow.flip_h = true
+		elif a == all_actions.HIT:
+			if actions_dir[i].x * actions_dir[i].y > 0:
+				arrow = hit_arrow_up.instance()
+				if actions_dir[i].y > 0:
+					arrow.flip_v = true
+			else:
+				arrow = hit_arrow_down.instance()
+				if actions_dir[i].y > 0:
+					arrow.flip_h = true
+			arrow.position = grid.map_to_world(offset + actions_dir[i])
+		
+		add_child(arrow)
+		i += 1
 
 
 func slender_plan_turn():
@@ -153,6 +178,30 @@ func slender_plan_turn():
 		actions_dir.append(- int_dir)
 		actions_dir.append(side_dir)
 		actions_dir.append(- side_dir)
+	
+	var i = 0
+	var offset = Vector2()
+	var arrow
+	for a in actions:
+		if a == all_actions.MOVE:
+			offset += actions_dir[i]
+			if actions_dir[i].x > 0 or actions_dir[i].y > 0:
+				arrow = move_arrow_down.instance()
+			else:
+				arrow = move_arrow_up.instance()
+			arrow.position = grid.map_to_world(offset)
+		elif a == all_actions.HIT:
+			if actions_dir[i].x > 0 or actions_dir[i].y > 0:
+				arrow = hit_arrow_down.instance()
+			else:
+				arrow = hit_arrow_up.instance()
+			arrow.position = grid.map_to_world(offset + actions_dir[i])
+		
+		add_child(arrow)
+		if actions_dir[i].x < 0 or actions_dir[i].y > 0:
+			arrow.flip_h = true
+			arrow.offset = Vector2(- arrow.offset.x, arrow.offset.y)
+		i += 1
 
 
 func try_move(direction = Vector2(), fromInput = true) -> bool:

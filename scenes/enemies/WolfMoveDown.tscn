@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/tilesets/intentions_tileset.png" type="Texture" id=1]
+
+[node name="Sprite" type="Sprite" groups=[
+"previews",
+]]
+z_index = -1
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 24.3945, 195.631, 108.711, 70.1373 )

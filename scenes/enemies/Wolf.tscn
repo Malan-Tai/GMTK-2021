@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://scenes/MoveArrow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/HitArrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/WolfMoveDown.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/WolfMoveUp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/troll.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=4]
 [ext_resource path="res://assets/slender/slender_0000.png" type="Texture" id=5]
@@ -42,15 +42,20 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 9 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "slender_walk",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 31 ), ExtResource( 29 ), ExtResource( 25 ), ExtResource( 7 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 30 ), ExtResource( 10 ), ExtResource( 30 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 7 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 31 ) ],
 "loop": true,
 "name": "wolf_walk",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 6 ), ExtResource( 15 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 8 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "snake_walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "slender_idle",
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": true,
@@ -62,15 +67,10 @@ animations = [ {
 "name": "wolf_idle",
 "speed": 0.5
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 6 ), ExtResource( 15 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 8 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 26 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 9 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "snake_walk",
+"name": "slender_walk",
 "speed": 12.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "slender_idle",
-"speed": 1.0
 } ]
 
 [node name="Wolf" type="KinematicBody2D" groups=[
@@ -78,8 +78,8 @@ animations = [ {
 "enemies",
 ]]
 script = ExtResource( 4 )
-move_arrow = ExtResource( 1 )
-hit_arrow = ExtResource( 2 )
+move_arrow_up = ExtResource( 2 )
+move_arrow_down = ExtResource( 1 )
 walk_anim = "wolf_walk"
 idle_anim = "wolf_idle"
 
