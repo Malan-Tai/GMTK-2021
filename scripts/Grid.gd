@@ -140,6 +140,10 @@ func _input(event):
 			action_points -= 1
 			if action_points <= 0:
 				$EndTurnTimer.start()
+				for pat in patterns:
+					pat.disabled = true
+					found_patterns[pat] = []
+					effect_patterns[pat] = []
 			else:
 				check_patterns()
 		
@@ -158,11 +162,13 @@ func check_patterns():
 			for pat in patterns:
 				for _i in range(4):
 					var do = true
+					var k = 0
 					for v in pat.pattern:
 						var ins2:TileElement = get_cell_content(Vector2(x + v.x, y + v.y))
-						if ins2 == null or not ins2.type in Constants.player_types:
+						if ins2 == null or not ins2.type in Constants.player_types or (pat.pattern_levels[k] == 3 and ins2.type != Constants.element_types.PLAYER_3) or (pat.pattern_levels[k] == 2 and not ins2.type in [Constants.element_types.PLAYER_2, Constants.element_types.PLAYER_3]):
 							do = false
 							break
+						k += 1
 					if do:
 						var affected = []
 						var effects = []
@@ -299,6 +305,10 @@ func end_turn(force=false):
 		return
 
 	get_tree().call_group("previews", "queue_free")
+	for pat in patterns:
+		pat.disabled = true
+		found_patterns[pat] = []
+		effect_patterns[pat] = []
 	for x in range(grid_size.x):
 		for y in range(grid_size.y):
 			var instance = get_cell_content(Vector2(x, y))
