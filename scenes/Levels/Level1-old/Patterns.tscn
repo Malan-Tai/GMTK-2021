@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/PatternButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/cards/Active - Hope-01.png" type="Texture" id=2]
+[ext_resource path="res://assets/cards/Inactive - Hope-01.png" type="Texture" id=3]
+
+[node name="Patterns" type="Node2D"]
+
+[node name="PatternButton" parent="." instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+dmg = 1
+pattern = [ Vector2( 0, 2 ) ]
+affected = [ Vector2( 0, 1 ) ]
+affected_effects = [ 0 ]
