@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/move_arrow.png-2e35b33eebd82cb4e051be97f6065992.stex"
+
+[node name="MoveArrow" type="Sprite" groups=[
+"previews",
+]]
+z_index = -1
+texture = SubResource( 1 )

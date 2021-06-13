@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/TileElement.gd" type="Script" id=50]
+[ext_resource path="res://assets/tilesets/tileset obstacles et décors.png" type="Texture" id=63]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.0
+
+[node name="Troll" type="KinematicBody2D" groups=[
+"elements",
+]]
+script = ExtResource( 50 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.3678, -45.9797 )
+texture = ExtResource( 63 )
+region_enabled = true
+region_rect = Rect2( 221.3, 37.4, 104.5, 126.35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

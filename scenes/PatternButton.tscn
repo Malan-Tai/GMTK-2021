@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/PatternButton.gd" type="Script" id=1]
+[ext_resource path="res://assets/cards/dummy_card.png" type="Texture" id=2]
+[ext_resource path="res://assets/cards/dummy_card_dark.png" type="Texture" id=3]
+
+[node name="PatternButton" type="TextureButton"]
+margin_right = 360.0
+margin_bottom = 200.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

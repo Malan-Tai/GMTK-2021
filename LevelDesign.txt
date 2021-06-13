@@ -1,0 +1,26 @@
+Coordinates system :
+- (0, 0) is the top corner
+- the x axis is directed to the right ((8, 0) is the rightmost corner)
+- the y axis is directed to the left  ((0, 8) is the rightmost corner)
+
+Create a new level : 
+- DUPLICATE the "Base Level" directory
+- In the Level.tscn scene :
+    - Player Coords is an array of vectors representing the coords of all the (lvl 1) ally units
+    - Enemy Coords is an array of vectors representing the coords of all the enemies, whose types are in the next array
+    - Enemy Types is an array of enemy types
+    - Obstacle Coords is an array of vectors representing the coords of all the obstacles
+
+- In the Patterns.tscn Scene :
+    - Duplicate or Drag&Drop the PatternButton.tscn scene as a child of Patterns
+    - For each pattern button :
+        - In the TextureButton > Textures tab, add the lit pattern in "Normal", and the dark one in "Disabled"
+        - Dmg is the amount of damage dealt by a damaging pattern
+        - Pattern is an array of vectors representing the coords (relative to the "central" unit,
+which does not need to be added in the Pattern array) of the required units
+	- Pattern Levels is an array of integer representing the minimal required level to use the
+pattern (in the same order as the above coordinates)
+	- Affected is an array of vectors representing the tiles (relative to the "central" unit)
+affected by the pattern (damaged, killed, etc). Add one even if the effect does not affect a tile
+(Gain an action point for example)
+	- Affected Effects is an array of effects (add one per affected vector)
