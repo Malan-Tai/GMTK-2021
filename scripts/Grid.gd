@@ -212,7 +212,7 @@ func _on_pattern_pressed(pattern):
 		for cell in array:
 			var effect = effect_patterns[pattern][i][j]
 			if effect == pattern.effects.DAMAGE:
-				cell_take_damage(cell, pattern.dmg)
+				cell_take_damage(cell, pattern.dmg, false)
 			elif effect == pattern.effects.SPAWN:
 				create_player(cell)
 			elif effect == pattern.effects.KILL:
@@ -302,9 +302,9 @@ func take_damage(pos=Vector2(), dir=Vector2(), dmg=1):
 	var grid_pos = world_to_map(pos) + dir
 	cell_take_damage(grid_pos, dmg)
 
-func cell_take_damage(grid_pos=Vector2(), dmg=1):
+func cell_take_damage(grid_pos=Vector2(), dmg=1, hurt_ally=true):
 	var ins:TileElement = get_cell_content(grid_pos)
-	if ins != null and ins.type != Constants.element_types.OBSTACLE:
+	if ins != null and ins.type != Constants.element_types.OBSTACLE and (hurt_ally or ins.type == Constants.element_types.ENEMY):
 		if ins.take_damage(dmg):
 			if ins.type == Constants.element_types.ENEMY:
 				enemy_num -= 1
