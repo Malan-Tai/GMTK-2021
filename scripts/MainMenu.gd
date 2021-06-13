@@ -31,3 +31,7 @@ func _on_HowTo_pressed():
 	var ins = HowTo.instance()
 	add_child(ins)
 	$AudioStreamPlayer.play()
+
+
+func _on_Music_finished():
+	$Music.play()

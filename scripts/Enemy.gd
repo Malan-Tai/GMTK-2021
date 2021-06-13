@@ -8,6 +8,12 @@ export (PackedScene) var hit_arrow_down
 export (String) var walk_anim
 export (String) var idle_anim
 
+var hp_0 = preload("res://assets/hp/0pv.png")
+var hp_1 = preload("res://assets/hp/1pv.png")
+var hp_2 = preload("res://assets/hp/2pv.png")
+var hp_3 = preload("res://assets/hp/3pv.png")
+var hp_4 = preload("res://assets/hp/4.png")
+
 enum all_behaviours {BASE, WOLF, SNAKE, SLENDER}
 enum all_actions {MOVE, HIT}
 
@@ -225,3 +231,23 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.play(walk_anim)
 	else:
 		$AnimatedSprite.play(idle_anim)
+		
+func take_damage(dmg=1) -> bool:
+	hp -= dmg
+	
+	if hp == 4:
+		$HP.texture = hp_4
+	elif hp == 3:
+		$HP.texture = hp_3
+	elif hp == 2:
+		$HP.texture = hp_2
+	elif hp == 1:
+		$HP.texture = hp_1
+	elif hp == 0:
+		$HP.texture = hp_0
+	
+	return hp <= 0
+		
+		
+		
+

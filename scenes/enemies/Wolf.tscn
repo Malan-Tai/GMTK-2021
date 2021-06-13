@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/enemies/WolfMoveDown.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/WolfMoveUp.tscn" type="PackedScene" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://assets/wolf/wolf_0001.png" type="Texture" id=29]
 [ext_resource path="res://assets/wolf/wolf_0007.png" type="Texture" id=30]
 [ext_resource path="res://assets/wolf/wolf_0000.png" type="Texture" id=31]
+[ext_resource path="res://assets/hp/2pv.png" type="Texture" id=32]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
@@ -96,10 +97,16 @@ position = Vector2( 0, -32 )
 scale = Vector2( 0.318605, 0.318605 )
 frames = SubResource( 2 )
 animation = "wolf_idle"
+frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="HP" type="Sprite" parent="."]
+position = Vector2( 20, 0 )
+scale = Vector2( 0.127697, 0.127697 )
+texture = ExtResource( 32 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
