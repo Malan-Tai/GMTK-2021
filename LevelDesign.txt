@@ -26,3 +26,6 @@ pattern (in the same order as the above coordinates)
 affected by the pattern (damaged, killed, etc). Add one even if the effect does not affect a tile
 (Gain an action point for example)
 	- Affected Effects is an array of effects (add one per affected vector)
+
+- You can then, in Level.tscn, remove the Patterns node, and add the new Patterns scene in its place
+(NB : it MUST be the FIRST child of Level)

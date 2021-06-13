@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/unité détruite.mp3-46cc82f21558425c543d16f0b02b6662.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/unité détruite.mp3"
+dest_files=[ "res://.import/unité détruite.mp3-46cc82f21558425c543d16f0b02b6662.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
