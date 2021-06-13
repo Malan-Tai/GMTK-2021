@@ -52,7 +52,10 @@ func _on_Grid_lose():
 
 func _on_Grid_win():
 	if next_level != "none":
-		get_tree().change_scene(next_level)
+		if next_level == "win":
+			get_tree().change_scene("res://scenes/Victory.tscn")
+		else:
+			get_tree().change_scene(next_level)
 
 
 func _on_Grid_enemy_died():
