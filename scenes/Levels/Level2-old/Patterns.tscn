@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/PatternButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/cards/Bravery-04.png" type="Texture" id=2]
+[ext_resource path="res://assets/cards/Bravery-03.png" type="Texture" id=3]
+
+[node name="Patterns" type="Node2D"]
+
+[node name="PatternButton2" parent="." instance=ExtResource( 1 )]
+margin_top = 240.0
+margin_bottom = 440.0
+texture_normal = ExtResource( 3 )
+texture_disabled = ExtResource( 2 )
+dmg = 1
+pattern = [ Vector2( 0, 0 ) ]
+pattern_levels = [ 2 ]
+affected = [ Vector2( -1, -1 ), Vector2( 1, 1 ), Vector2( 1, -1 ), Vector2( -1, 1 ) ]
+affected_effects = [ 0, 0, 0, 0 ]
