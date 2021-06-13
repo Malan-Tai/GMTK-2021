@@ -10,6 +10,9 @@ export (Array, Vector2) var obstacle_coords = [Vector2(3, 4)]
 
 export (String) var next_level = "none"
 
+onready var Pause = preload("res://scenes/Pause.tscn")
+var paused = false
+
 var preview_visible = true
 var mute = false
 
@@ -17,6 +20,20 @@ var mute = false
 func _ready():
 	$Grid.init(player_coords, enemy_coords, enemy_types, obstacle_coords)
 
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if not paused:
+			paused = true
+			var ins = Pause.instance()
+			ins.connect("resumed", self, "unpause")
+			add_child_below_node(get_children()[get_child_count() - 1], ins)
+		else:
+			paused = false
+			get_child(get_child_count() - 1).queue_free()
+
+func unpause():
+	paused = false
 
 func _on_TogglePreview_pressed():
 	preview_visible = not preview_visible
