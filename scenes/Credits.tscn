@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/UI/bouton_pause_resume.png" type="Texture" id=1]
-[ext_resource path="res://assets/UI/ecran_how_to.png" type="Texture" id=2]
+[ext_resource path="res://assets/UI/ecran_credits.png" type="Texture" id=2]
 [ext_resource path="res://scripts/HowToPlay.gd" type="Script" id=3]
 [ext_resource path="res://assets/sound/Bouton UI.wav" type="AudioStream" id=4]
 
@@ -15,9 +15,9 @@ centered = false
 
 [node name="Back" type="TextureButton" parent="."]
 margin_left = 660.0
-margin_top = 805.0
+margin_top = 725.0
 margin_right = 1184.0
-margin_bottom = 942.0
+margin_bottom = 862.0
 rect_scale = Vector2( 0.526597, 0.526597 )
 texture_normal = ExtResource( 1 )
 __meta__ = {
