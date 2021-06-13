@@ -46,7 +46,7 @@ player_coords = [ Vector2( 3, 3 ), Vector2( 2, 5 ) ]
 enemy_coords = [ Vector2( 2, 3 ), Vector2( 4, 3 ), Vector2( 4, 6 ) ]
 enemy_types = [ 0, 0, 0 ]
 obstacle_coords = [ Vector2( 1, 3 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 4, 2 ) ]
-next_level = "res://scenes/Levels/Level5/Level.tscn"
+next_level = "res://scenes/Levels/Level7/Level.tscn"
 
 [node name="Patterns" parent="." instance=ExtResource( 6 )]
 
