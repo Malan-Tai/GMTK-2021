@@ -11,6 +11,7 @@ export (Array, Vector2) var obstacle_coords = [Vector2(3, 4)]
 export (String) var next_level = "none"
 
 var preview_visible = true
+var mute = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,3 +45,12 @@ func _on_Grid_enemy_died():
 
 func _on_Witch_animation_finished():
 	$Witch.play("idle")
+
+
+func _on_AudioStreamPlayer_finished():
+	$AudioStreamPlayer.play()
+
+
+func _on_Mute_pressed():
+	mute = not mute
+	$AudioStreamPlayer.stream_paused = mute
