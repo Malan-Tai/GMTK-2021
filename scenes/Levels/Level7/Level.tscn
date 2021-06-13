@@ -1,0 +1,136 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://scripts/Level.gd" type="Script" id=1]
+[ext_resource path="res://scenes/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/witch/witch_wrath_0002.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/Fond.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Levels/Level6/Patterns.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/UI/restart level v2.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/son_active_v2.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/toggle_unactive_v2.png" type="Texture" id=9]
+[ext_resource path="res://assets/witch/witch_wrath_0007.png" type="Texture" id=10]
+[ext_resource path="res://assets/witch/witch_wrath_0008.png" type="Texture" id=11]
+[ext_resource path="res://assets/witch/witch_wrath_0012.png" type="Texture" id=12]
+[ext_resource path="res://assets/witch/witch_wrath_0003.png" type="Texture" id=13]
+[ext_resource path="res://assets/witch/witch_wrath_0005.png" type="Texture" id=14]
+[ext_resource path="res://assets/witch/witch_wrath_0013.png" type="Texture" id=15]
+[ext_resource path="res://assets/witch/witch_wrath_0014.png" type="Texture" id=16]
+[ext_resource path="res://assets/witch/witch_wrath_0001.png" type="Texture" id=17]
+[ext_resource path="res://assets/witch/witch_wrath_0006.png" type="Texture" id=18]
+[ext_resource path="res://assets/witch/witch_wrath_0004.png" type="Texture" id=19]
+[ext_resource path="res://assets/witch/witch_wrath_0010.png" type="Texture" id=20]
+[ext_resource path="res://assets/witch/witch_wrath_0011.png" type="Texture" id=21]
+[ext_resource path="res://assets/witch/witch_wrath_0009.png" type="Texture" id=22]
+[ext_resource path="res://assets/witch/witch_wrath_0000.png" type="Texture" id=23]
+[ext_resource path="res://assets/music/woodo main theme.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/UI/son_unactive_v2.png" type="Texture" id=25]
+[ext_resource path="res://assets/UI/toggle_active_v2.png" type="Texture" id=26]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "idle",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 17 ), ExtResource( 3 ), ExtResource( 13 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "angry",
+"speed": 12.0
+} ]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 1 )
+player_coords = [ Vector2( 3, 3 ), Vector2( 2, 5 ) ]
+enemy_coords = [ Vector2( 2, 3 ), Vector2( 4, 3 ), Vector2( 4, 6 ) ]
+enemy_types = [ 0, 0, 0 ]
+obstacle_coords = [ Vector2( 1, 3 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 4, 2 ) ]
+next_level = "res://scenes/Levels/Level5/Level.tscn"
+
+[node name="Patterns" parent="." instance=ExtResource( 6 )]
+
+[node name="Grid" parent="." instance=ExtResource( 5 )]
+position = Vector2( 832, 200 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+centered_textures = true
+tile_data = PoolIntArray( 0, 15, 0, 1, 15, 0, 2, 14, 0, 3, 14, 0, 4, 15, 0, 5, 15, 0, 6, 14, 0, 7, 15, 0, 8, 15, 0, 65538, 14, 0, 65539, 14, 0, 65540, 15, 0, 65541, 14, 0, 65542, 15, 0, 65543, 15, 0, 65544, 14, 0, 131074, 14, 0, 131075, 14, 0, 131076, 14, 0, 196608, 15, 0, 196609, 15, 0, 196610, 15, 0, 196611, 15, 0, 196612, 15, 0, 262146, 15, 0, 262147, 14, 0, 327682, 14, 0, 327683, 14, 0, 327684, 15, 0, 393218, 15, 0, 393219, 15, 0, 393220, 15, 0 )
+
+[node name="YSort" type="YSort" parent="Grid"]
+z_index = 2
+
+[node name="EndTurnTimer" type="Timer" parent="Grid"]
+wait_time = 0.5
+one_shot = true
+
+[node name="DetailGrid" parent="." instance=ExtResource( 5 )]
+position = Vector2( 831.333, 192.658 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+centered_textures = true
+tile_data = PoolIntArray( 262146, 12, 0, 327683, 12, 0 )
+script = null
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 800, 440 )
+scale = Vector2( 0.854355, 0.854355 )
+z_index = -3
+texture = ExtResource( 4 )
+
+[node name="Witch" type="AnimatedSprite" parent="."]
+position = Vector2( 898.008, 430.132 )
+scale = Vector2( 0.806581, 0.806581 )
+z_index = 1
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="TogglePreview" type="TextureButton" parent="."]
+margin_left = 775.0
+margin_top = 790.0
+margin_right = 889.0
+margin_bottom = 904.0
+toggle_mode = true
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="TextureButton" parent="."]
+margin_left = 685.0
+margin_top = 745.0
+margin_right = 772.0
+margin_bottom = 832.0
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mute" type="TextureButton" parent="."]
+margin_left = 890.0
+margin_top = 755.0
+margin_right = 985.0
+margin_bottom = 845.0
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+autoplay = true
+
+[connection signal="enemy_died" from="Grid" to="." method="_on_Grid_enemy_died"]
+[connection signal="lose" from="Grid" to="." method="_on_Grid_lose"]
+[connection signal="win" from="Grid" to="." method="_on_Grid_win"]
+[connection signal="timeout" from="Grid/EndTurnTimer" to="Grid" method="_on_EndTurnTimer_timeout"]
+[connection signal="animation_finished" from="Witch" to="." method="_on_Witch_animation_finished"]
+[connection signal="pressed" from="TogglePreview" to="." method="_on_TogglePreview_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
