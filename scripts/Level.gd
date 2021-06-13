@@ -7,6 +7,12 @@ export (Array, Vector2) var player_coords = [Vector2(), Vector2(4, 4)]
 export (Array, Vector2) var enemy_coords = [Vector2(8, 8), Vector2(7, 8)]
 export (Array, enemies) var enemy_types = [enemies.WOLF, enemies.SNAKE]
 export (Array, Vector2) var obstacle_coords = [Vector2(3, 4)]
+var voice_lines = [preload("res://assets/voice/earth.wav"),
+					preload("res://assets/voice/guardien.wav"),
+					preload("res://assets/voice/no time to lose.wav"),
+					preload("res://assets/voice/papa leghba.wav"),
+					preload("res://assets/voice/souls.wav"),
+					preload("res://assets/voice/time.wav")]
 
 export (String) var next_level = "none"
 
@@ -19,6 +25,8 @@ var mute = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Grid.init(player_coords, enemy_coords, enemy_types, obstacle_coords)
+	$Sounds.stream = voice_lines[randi() % voice_lines.size()]
+	$Sounds.play()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -79,7 +87,6 @@ func _on_Mute_pressed():
 
 
 func _on_Grid_play_sound(sound):
-	print(sound)
 	$Sounds.stream = load(sound)
 	$Sounds.stream.set_loop_mode(0)
 	$Sounds.play()

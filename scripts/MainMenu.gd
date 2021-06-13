@@ -5,9 +5,10 @@ extends Node2D
 onready var Credits = preload("res://scenes/Credits.tscn")
 onready var HowTo = preload("res://scenes/HowToPlay.tscn")
 
+var ui_sound = preload("res://assets/sound/Bouton UI.wav")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
 
 
 func _on_Play_pressed():
@@ -35,3 +36,9 @@ func _on_HowTo_pressed():
 
 func _on_Music_finished():
 	$Music.play()
+
+
+func _on_AudioStreamPlayer_finished():
+	$Music.volume_db = 1
+	$AudioStreamPlayer.stream = ui_sound
+	$AudioStreamPlayer.volume_db = 1
