@@ -10,6 +10,8 @@ Create a new level :
     - Enemy Coords is an array of vectors representing the coords of all the enemies, whose types are in the next array
     - Enemy Types is an array of enemy types
     - Obstacle Coords is an array of vectors representing the coords of all the obstacles
+    - Next Level is the PATH to the following Level (right click > copy path on the corresponding Level.tscn).
+If there is no following level, write "none"
 
 - In the Patterns.tscn Scene :
     - Duplicate or Drag&Drop the PatternButton.tscn scene as a child of Patterns

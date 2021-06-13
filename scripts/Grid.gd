@@ -3,6 +3,7 @@ class_name Grid
 
 signal win
 signal lose
+signal enemy_died
 
 var tile_size = get_cell_size()
 # The map_to_world function returns the position of the tile's top left corner in isometric space,
@@ -136,10 +137,6 @@ func _input(event):
 					if (ins != null):
 						ins.try_move(direction, true)
 
-			for pat in patterns:
-				pat.disabled = true
-				found_patterns[pat] = []
-				effect_patterns[pat] = []
 			action_points -= 1
 			if action_points <= 0:
 				$EndTurnTimer.start()
@@ -148,6 +145,11 @@ func _input(event):
 		
 
 func check_patterns():
+	for pat in patterns:
+		pat.disabled = true
+		found_patterns[pat] = []
+		effect_patterns[pat] = []
+
 	for x in range(grid_size.x):
 		for y in range(grid_size.y):
 			var ins:TileElement = grid[x][y]
@@ -287,6 +289,7 @@ func cell_take_damage(grid_pos=Vector2(), dmg=1):
 			if ins.type == Constants.element_types.ENEMY:
 				enemy_num -= 1
 				enemy_playing -= 1
+				emit_signal("enemy_died")
 			ins.queue_free()
 			grid[grid_pos.x][grid_pos.y] = null
 
@@ -307,12 +310,14 @@ func end_turn(force=false):
 					if instance.type == Constants.element_types.ENEMY:
 						enemy_num -= 1
 						enemy_playing -= 1
+						emit_signal("enemy_died")
 					instance.queue_free()
 					grid[x][y] = null
 			elif hazard == 12 and instance.type == Constants.element_types.ENEMY:
 				if instance.take_damage(1):
 					enemy_num -= 1
 					enemy_playing -= 1
+					emit_signal("enemy_died")
 					instance.queue_free()
 					grid[x][y] = null
 			elif hazard == 13 and instance.type in Constants.player_types:

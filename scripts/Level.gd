@@ -36,3 +36,11 @@ func _on_Grid_lose():
 func _on_Grid_win():
 	if next_level != "none":
 		get_tree().change_scene(next_level)
+
+
+func _on_Grid_enemy_died():
+	$Witch.play("angry")
+
+
+func _on_Witch_animation_finished():
+	$Witch.play("idle")

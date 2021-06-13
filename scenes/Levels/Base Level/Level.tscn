@@ -1,14 +1,41 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://assets/UI/witch_v0.png" type="Texture" id=3]
+[ext_resource path="res://assets/witch/witch_wrath_0002.png" type="Texture" id=3]
 [ext_resource path="res://assets/UI/Fond.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Levels/Base Level/Patterns.tscn" type="PackedScene" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://assets/UI/toggle_unactive.png" type="Texture" id=8]
 [ext_resource path="res://assets/UI/toggle_active.png" type="Texture" id=9]
+[ext_resource path="res://assets/witch/witch_wrath_0007.png" type="Texture" id=10]
+[ext_resource path="res://assets/witch/witch_wrath_0008.png" type="Texture" id=11]
+[ext_resource path="res://assets/witch/witch_wrath_0012.png" type="Texture" id=12]
+[ext_resource path="res://assets/witch/witch_wrath_0003.png" type="Texture" id=13]
+[ext_resource path="res://assets/witch/witch_wrath_0005.png" type="Texture" id=14]
+[ext_resource path="res://assets/witch/witch_wrath_0013.png" type="Texture" id=15]
+[ext_resource path="res://assets/witch/witch_wrath_0014.png" type="Texture" id=16]
+[ext_resource path="res://assets/witch/witch_wrath_0001.png" type="Texture" id=17]
+[ext_resource path="res://assets/witch/witch_wrath_0006.png" type="Texture" id=18]
+[ext_resource path="res://assets/witch/witch_wrath_0004.png" type="Texture" id=19]
+[ext_resource path="res://assets/witch/witch_wrath_0010.png" type="Texture" id=20]
+[ext_resource path="res://assets/witch/witch_wrath_0011.png" type="Texture" id=21]
+[ext_resource path="res://assets/witch/witch_wrath_0009.png" type="Texture" id=22]
+[ext_resource path="res://assets/witch/witch_wrath_0000.png" type="Texture" id=23]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "idle",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 17 ), ExtResource( 3 ), ExtResource( 13 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "angry",
+"speed": 12.0
+} ]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -48,11 +75,12 @@ scale = Vector2( 0.854355, 0.854355 )
 z_index = -3
 texture = ExtResource( 4 )
 
-[node name="Witch" type="Sprite" parent="."]
+[node name="Witch" type="AnimatedSprite" parent="."]
 position = Vector2( 898.008, 430.132 )
 scale = Vector2( 0.806581, 0.806581 )
 z_index = 1
-texture = ExtResource( 3 )
+frames = SubResource( 1 )
+animation = "idle"
 
 [node name="TogglePreview" type="TextureButton" parent="."]
 margin_left = 1320.0
@@ -86,9 +114,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="enemy_died" from="Grid" to="." method="_on_Grid_enemy_died"]
 [connection signal="lose" from="Grid" to="." method="_on_Grid_lose"]
 [connection signal="win" from="Grid" to="." method="_on_Grid_win"]
 [connection signal="timeout" from="Grid/EndTurnTimer" to="Grid" method="_on_EndTurnTimer_timeout"]
+[connection signal="animation_finished" from="Witch" to="." method="_on_Witch_animation_finished"]
 [connection signal="pressed" from="TogglePreview" to="." method="_on_TogglePreview_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="EndTurn" to="Grid" method="_on_EndTurn_pressed"]
