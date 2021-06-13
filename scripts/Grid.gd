@@ -170,6 +170,7 @@ func check_patterns():
 							break
 						k += 1
 					if do:
+						print("found")
 						var affected = []
 						var effects = []
 						var i = 0
@@ -182,11 +183,25 @@ func check_patterns():
 									affected.append(Vector2(x, y) + j * v)
 									effects.append(pat.effects.DAMAGE)
 							i += 1
-						if not affected in found_patterns[pat]:
+						print(affected)
+						print(found_patterns[pat])
+						if not pattern_already_found(pat, affected):
 							found_patterns[pat].append(affected)
 							effect_patterns[pat].append(effects)
+							print("added")
 						pat.disabled = false
 					pat.rotate()
+
+
+func pattern_already_found(pattern, affected):
+	for array in found_patterns[pattern]:
+		var n = 0
+		for v in affected:
+			if v in array:
+				n += 1
+		if n == affected.size():
+			return true
+	return false
 
 
 func _on_pattern_pressed(pattern):
@@ -290,7 +305,6 @@ func take_damage(pos=Vector2(), dir=Vector2(), dmg=1):
 func cell_take_damage(grid_pos=Vector2(), dmg=1):
 	var ins:TileElement = get_cell_content(grid_pos)
 	if ins != null and ins.type != Constants.element_types.OBSTACLE:
-		print("took damage")
 		if ins.take_damage(dmg):
 			if ins.type == Constants.element_types.ENEMY:
 				enemy_num -= 1
