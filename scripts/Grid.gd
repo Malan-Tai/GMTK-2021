@@ -331,6 +331,7 @@ func _on_endturn_recieve():
 			print("win")
 			emit_signal("win")
 	else:
+		print(enemy_playing)
 		get_tree().get_nodes_in_group("enemies")[enemy_playing].do_turn()
 
 
@@ -358,7 +359,7 @@ func cell_take_damage(grid_pos=Vector2(), dmg=1, hurt_ally=true):
 		if ins.take_damage(dmg):
 			if ins.type == Constants.element_types.ENEMY:
 				enemy_num -= 1
-				enemy_playing -= 1
+				#enemy_playing -= 1
 				emit_signal("enemy_died")
 			else:
 				emit_signal("play_sound", "res://assets/sound/unité-détruite.wav")
