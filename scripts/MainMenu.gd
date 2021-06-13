@@ -14,6 +14,7 @@ func _on_Play_pressed():
 	#if next_level != "none":
 		#get_tree().change_scene(next_level)
 	get_tree().change_scene("res://scenes/Levels/Level1/Level.tscn")
+	$AudioStreamPlayer.play()
 
 
 func _on_Quit_pressed():
@@ -23,8 +24,10 @@ func _on_Quit_pressed():
 func _on_Credits_pressed():
 	var ins = Credits.instance()
 	add_child(ins)
+	$AudioStreamPlayer.play()
 
 
 func _on_HowTo_pressed():
 	var ins = HowTo.instance()
 	add_child(ins)
+	$AudioStreamPlayer.play()

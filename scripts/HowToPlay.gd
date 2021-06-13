@@ -6,4 +6,5 @@ func _ready():
 
 
 func _on_Back_pressed():
+	$AudioStreamPlayer.play()
 	queue_free()

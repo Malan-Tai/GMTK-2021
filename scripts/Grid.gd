@@ -4,6 +4,7 @@ class_name Grid
 signal win
 signal lose
 signal enemy_died
+signal play_sound(sound)
 
 var tile_size = get_cell_size()
 # The map_to_world function returns the position of the tile's top left corner in isometric space,
@@ -203,11 +204,13 @@ func pattern_already_found(pattern, affected):
 func _on_pattern_pressed(pattern):
 	pattern.disabled = true
 	var i = 0
+	var dmg = false
 	for array in found_patterns[pattern]:
 		var j = 0
 		for cell in array:
 			var effect = effect_patterns[pattern][i][j]
 			if effect == pattern.effects.DAMAGE:
+				dmg = true
 				cell_take_damage(cell, pattern.dmg, false)
 			elif effect == pattern.effects.SPAWN:
 				create_player(cell)
@@ -221,6 +224,12 @@ func _on_pattern_pressed(pattern):
 		i += 1
 	found_patterns[pattern] = []
 	effect_patterns[pattern] = []
+	
+	if enemy_num <= 0:
+		emit_signal("win")
+	
+	if dmg:
+		emit_signal("play_sound", "res://assets/sound/attaque 2.wav")
 
 
 func get_cell_content(pos=Vector2()):
@@ -249,6 +258,7 @@ func update_child_pos(pos, direction, instance):
 	var old:TileElement = grid[new_grid_pos.x][new_grid_pos.y]
 	if old != null and Constants.can_fusion(instance.type, old.type):
 		instance.update_type(Constants.do_fusion(instance.type, old.type))
+		emit_signal("play_sound", "res://assets/sound/fuusion.wav")
 		old.queue_free()
 		print("fusion")
 	elif old != null and old.pushable:
@@ -308,6 +318,8 @@ func cell_take_damage(grid_pos=Vector2(), dmg=1, hurt_ally=true):
 				enemy_num -= 1
 				enemy_playing -= 1
 				emit_signal("enemy_died")
+			else:
+				emit_signal("play_sound", "res://assets/sound/unité-détruite.wav")
 			ins.queue_free()
 			grid[grid_pos.x][grid_pos.y] = null
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/UI/bouton_pause_resume.png" type="Texture" id=1]
 [ext_resource path="res://assets/UI/ecran_credits.png" type="Texture" id=2]
 [ext_resource path="res://scripts/HowToPlay.gd" type="Script" id=3]
+[ext_resource path="res://assets/sound/Bouton UI.wav" type="AudioStream" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
@@ -22,5 +23,8 @@ texture_normal = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

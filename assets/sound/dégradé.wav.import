@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dégradé.wav-e4ebde8f76ef6cd3307f3437a614f7ff.sample"
+
+[deps]
+
+source_file="res://assets/sound/dégradé.wav"
+dest_files=[ "res://.import/dégradé.wav-e4ebde8f76ef6cd3307f3437a614f7ff.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -20,7 +20,6 @@ var mute = false
 func _ready():
 	$Grid.init(player_coords, enemy_coords, enemy_types, obstacle_coords)
 
-
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if not paused:
@@ -57,6 +56,9 @@ func _on_Grid_win():
 
 
 func _on_Grid_enemy_died():
+	$Sounds.stream = load("res://assets/sound/mort méchant .wav")
+	$Sounds.stream.set_loop_mode(0)
+	$Sounds.play()
 	$Witch.play("angry")
 
 
@@ -71,3 +73,12 @@ func _on_AudioStreamPlayer_finished():
 func _on_Mute_pressed():
 	mute = not mute
 	$AudioStreamPlayer.stream_paused = mute
+
+
+func _on_Grid_play_sound(sound):
+	$Sounds.stream = load(sound)
+	$Sounds.stream.set_loop_mode(0)
+	$Sounds.play()
+
+
+
