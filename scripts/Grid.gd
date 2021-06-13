@@ -18,6 +18,7 @@ var action_points = MAX_AP
 var patterns = []
 var found_patterns = {}
 var effect_patterns = {}
+var patterns_origin = {}
 
 var enemy_num = 0
 var recieved_end_turns = 0
@@ -45,6 +46,7 @@ func _ready():
 		patterns.append(c)
 		found_patterns[c] = []
 		effect_patterns[c] = []
+		patterns_origin[c] = []
 		c.connect("pressed", self, "_on_pattern_pressed", [c])
 	
 	for x in range(grid_size.x):
@@ -61,6 +63,7 @@ func init(player_coords, enemy_coords, enemy_types, obstacle_coords):
 	for c in patterns_scene.get_children():
 		found_patterns[c] = []
 		effect_patterns[c] = []
+		patterns_origin[c] = []
 
 	enemy_num = 0
 	recieved_end_turns = 0
@@ -147,6 +150,7 @@ func _input(event):
 					pat.disabled = true
 					found_patterns[pat] = []
 					effect_patterns[pat] = []
+					patterns_origin[pat] = []
 			else:
 				check_patterns()
 		
@@ -156,6 +160,7 @@ func check_patterns():
 		pat.disabled = true
 		found_patterns[pat] = []
 		effect_patterns[pat] = []
+		patterns_origin[pat] = []
 
 	for x in range(grid_size.x):
 		for y in range(grid_size.y):
@@ -164,10 +169,12 @@ func check_patterns():
 				continue
 			for pat in patterns:
 				for _i in range(4):
+					var origin = [Vector2(x, y)]
 					var do = true
 					var k = 0
 					for v in pat.pattern:
 						var ins2:TileElement = get_cell_content(Vector2(x + v.x, y + v.y))
+						origin.append(Vector2(x + v.x, y + v.y))
 						if ins2 == null or not ins2.type in Constants.player_types or (pat.pattern_levels[k] == 3 and ins2.type != Constants.element_types.PLAYER_3) or (pat.pattern_levels[k] == 2 and not ins2.type in [Constants.element_types.PLAYER_2, Constants.element_types.PLAYER_3]):
 							do = false
 							break
@@ -185,20 +192,32 @@ func check_patterns():
 									affected.append(Vector2(x, y) + j * v)
 									effects.append(pat.effects.DAMAGE)
 							i += 1
-						if not pattern_already_found(pat, affected):
+						if not pattern_already_found(pat, origin, affected):
 							found_patterns[pat].append(affected)
 							effect_patterns[pat].append(effects)
+							patterns_origin[pat].append(origin)
 						pat.disabled = false
 					pat.rotate()
 
 
-func pattern_already_found(pattern, affected):
+func pattern_already_found(pattern, origin, affected):
+	var found = false
 	for array in found_patterns[pattern]:
 		var n = 0
 		for v in affected:
 			if v in array:
 				n += 1
 		if n == affected.size():
+			found = true
+	if not found:
+		return false
+	
+	for array in patterns_origin[pattern]:
+		var n = 0
+		for v in origin:
+			if v in array:
+				n += 1
+		if n == origin.size():
 			return true
 	return false
 
@@ -356,6 +375,7 @@ func end_turn(force=false):
 		pat.disabled = true
 		found_patterns[pat] = []
 		effect_patterns[pat] = []
+		patterns_origin[pat] = []
 	for x in range(grid_size.x):
 		for y in range(grid_size.y):
 			var instance = get_cell_content(Vector2(x, y))
