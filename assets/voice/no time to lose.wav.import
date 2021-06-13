@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/no time to lose.wav-e6456a47b4b68029b79baaa61b6e4889.sample"
+
+[deps]
+
+source_file="res://assets/voice/no time to lose.wav"
+dest_files=[ "res://.import/no time to lose.wav-e6456a47b4b68029b79baaa61b6e4889.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

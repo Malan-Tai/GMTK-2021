@@ -55,6 +55,7 @@ func _ready():
 
 func init(player_coords, enemy_coords, enemy_types, obstacle_coords):
 	action_points = MAX_AP
+	update_AP_UI()
 	
 	var patterns_scene = get_parent().get_child(0)
 	for c in patterns_scene.get_children():
@@ -139,6 +140,7 @@ func _input(event):
 						ins.try_move(direction, true)
 
 			action_points -= 1
+			update_AP_UI()
 			if action_points <= 0:
 				$EndTurnTimer.start()
 				for pat in patterns:
@@ -220,6 +222,7 @@ func _on_pattern_pressed(pattern):
 					ins.queue_free()
 			elif effect == pattern.effects.NEW_ACTION:
 				action_points += 1
+				update_AP_UI()
 			j += 1
 		i += 1
 	found_patterns[pattern] = []
@@ -230,6 +233,25 @@ func _on_pattern_pressed(pattern):
 	
 	if dmg:
 		emit_signal("play_sound", "res://assets/sound/attaque 2.wav")
+
+
+func update_AP_UI():
+	if action_points == 3:
+		$"1AP".visible = true
+		$"2AP".visible = true
+		$"3AP".visible = true
+	elif action_points == 2:
+		$"1AP".visible = true
+		$"2AP".visible = true
+		$"3AP".visible = false
+	elif action_points == 1:
+		$"1AP".visible = true
+		$"2AP".visible = false
+		$"3AP".visible = false
+	elif action_points == 0:
+		$"1AP".visible = false
+		$"2AP".visible = false
+		$"3AP".visible = false
 
 
 func get_cell_content(pos=Vector2()):
@@ -281,6 +303,7 @@ func _on_endturn_recieve():
 	if recieved_end_turns >= enemy_num:
 		get_tree().call_group("enemies", "plan_turn")
 		action_points = MAX_AP
+		update_AP_UI()
 		recieved_end_turns = 0
 		check_patterns()
 		if get_tree().get_nodes_in_group("player_units").size() <= 0:
@@ -364,6 +387,7 @@ func end_turn(force=false):
 		get_tree().get_nodes_in_group("enemies")[0].do_turn()
 	else:
 		action_points = MAX_AP
+		update_AP_UI()
 		emit_signal("win")
 
 func _on_EndTurnTimer_timeout():

@@ -76,6 +76,7 @@ func _on_Mute_pressed():
 
 
 func _on_Grid_play_sound(sound):
+	print(sound)
 	$Sounds.stream = load(sound)
 	$Sounds.stream.set_loop_mode(0)
 	$Sounds.play()
