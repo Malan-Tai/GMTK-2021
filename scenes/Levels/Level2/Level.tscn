@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/witch/witch_wrath_0002.png" type="Texture" id=3]
 [ext_resource path="res://assets/UI/Fond.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Levels/Level2/Patterns.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/UI/son_active_v2.png" type="Texture" id=7]
-[ext_resource path="res://assets/UI/toggle_unactive_v2.png" type="Texture" id=8]
-[ext_resource path="res://assets/UI/son_unactive_v2.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Levels/Level1/Patterns.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/UI/restart level v2.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/son_active_v2.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/toggle_unactive_v2.png" type="Texture" id=9]
 [ext_resource path="res://assets/witch/witch_wrath_0007.png" type="Texture" id=10]
 [ext_resource path="res://assets/witch/witch_wrath_0008.png" type="Texture" id=11]
 [ext_resource path="res://assets/witch/witch_wrath_0012.png" type="Texture" id=12]
@@ -24,8 +24,8 @@
 [ext_resource path="res://assets/witch/witch_wrath_0009.png" type="Texture" id=22]
 [ext_resource path="res://assets/witch/witch_wrath_0000.png" type="Texture" id=23]
 [ext_resource path="res://assets/music/woodo main theme.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/UI/toggle_active_v2.png" type="Texture" id=25]
-[ext_resource path="res://assets/UI/restart level v2.png" type="Texture" id=26]
+[ext_resource path="res://assets/UI/son_unactive_v2.png" type="Texture" id=25]
+[ext_resource path="res://assets/UI/toggle_active_v2.png" type="Texture" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -40,13 +40,13 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
-player_coords = [ Vector2( 3, 5 ), Vector2( 4, 5 ), Vector2( 5, 5 ), Vector2( 4, 4 ), Vector2( 4, 3 ) ]
-enemy_coords = [ Vector2( 3, 4 ), Vector2( 5, 4 ) ]
-enemy_types = [ 0, 0 ]
-obstacle_coords = [ Vector2( 2, 0 ), Vector2( 3, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ), Vector2( 2, 1 ), Vector2( 3, 1 ), Vector2( 4, 1 ), Vector2( 5, 1 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 4, 2 ), Vector2( 5, 2 ), Vector2( 0, 3 ), Vector2( 1, 3 ), Vector2( 0, 4 ), Vector2( 1, 4 ), Vector2( 7, 3 ), Vector2( 8, 3 ), Vector2( 7, 4 ), Vector2( 8, 4 ), Vector2( 7, 5 ), Vector2( 8, 5 ), Vector2( 2, 6 ), Vector2( 3, 6 ), Vector2( 4, 6 ), Vector2( 5, 6 ), Vector2( 6, 6 ), Vector2( 2, 7 ), Vector2( 3, 7 ), Vector2( 4, 7 ), Vector2( 5, 7 ), Vector2( 6, 7 ), Vector2( 2, 5 ), Vector2( 6, 3 ), Vector2( 6, 5 ), Vector2( 6, 4 ) ]
-next_level = "res://scenes/Levels/Level3/Level.tscn"
+player_coords = [ Vector2( 4, 3 ), Vector2( 4, 5 ), Vector2( 3, 4 ), Vector2( 5, 4 ) ]
+enemy_coords = [ Vector2( 4, 4 ) ]
+enemy_types = [ 0 ]
+obstacle_coords = [ Vector2( 1, 3 ), Vector2( 3, 2 ), Vector2( 4, 2 ) ]
+next_level = "res://scenes/Levels/Level2/Level.tscn"
 
 [node name="Patterns" parent="." instance=ExtResource( 6 )]
 
@@ -56,7 +56,7 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 centered_textures = true
-tile_data = PoolIntArray( -65528, 15, 0, 0, 15, 0, 1, 15, 0, 2, 15, 0, 3, 15, 0, 4, 15, 0, 5, 15, 0, 6, 15, 0, 7, 15, 0, 8, 15, 0, 65538, 15, 0, 65539, 15, 0, 65540, 15, 0, 65541, 15, 0, 65542, 15, 0, 131074, 15, 0, 131075, 15, 0, 131076, 15, 0, 131077, 15, 0, 131078, 15, 0, 131079, 15, 0, 131080, 15, 0, 196608, 15, 0, 196609, 15, 0, 196610, 15, 0, 196611, 15, 0, 196612, 15, 0, 196613, 15, 0, 196614, 15, 0, 196615, 15, 0, 196616, 15, 0, 262144, 15, 0, 262145, 15, 0, 262146, 15, 0, 262147, 15, 0, 262148, 15, 0, 262149, 15, 0, 262150, 15, 0, 262151, 15, 0, 262152, 15, 0, 327680, 15, 0, 327681, 15, 0, 327682, 15, 0, 327683, 15, 0, 327684, 15, 0, 327685, 15, 0, 327686, 15, 0, 327687, 15, 0, 327688, 15, 0, 393218, 15, 0, 393219, 15, 0, 393220, 15, 0, 393221, 15, 0, 393222, 15, 0, 458754, 15, 0, 458755, 15, 0, 458756, 15, 0, 458757, 15, 0, 458758, 15, 0 )
+tile_data = PoolIntArray( 0, 15, 0, 1, 15, 0, 2, 15, 0, 3, 15, 0, 4, 15, 0, 5, 15, 0, 6, 15, 0, 7, 15, 0, 8, 15, 0, 65536, 15, 0, 65537, 15, 0, 65538, 15, 0, 65539, 15, 0, 65540, 15, 0, 65541, 15, 0, 65542, 15, 0, 65543, 15, 0, 65544, 15, 0, 131075, 15, 0, 131076, 15, 0, 196608, 15, 0, 196609, 15, 0, 196610, 15, 0, 196611, 15, 0, 196612, 15, 0, 196613, 15, 0, 262146, 15, 0, 262147, 15, 0, 262148, 15, 0, 262149, 15, 0, 262150, 15, 0, 327683, 15, 0, 327684, 15, 0, 327685, 15, 0, 327686, 15, 0 )
 
 [node name="YSort" type="YSort" parent="Grid"]
 z_index = 2
@@ -71,7 +71,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 centered_textures = true
-tile_data = PoolIntArray( 131075, 20, 0, 131076, 20, 0, 327684, 20, 0, 327685, 20, 0, 458755, 20, 0 )
 script = null
 
 [node name="Background" type="Sprite" parent="."]
@@ -93,8 +92,8 @@ margin_top = 790.0
 margin_right = 889.0
 margin_bottom = 904.0
 toggle_mode = true
-texture_normal = ExtResource( 25 )
-texture_pressed = ExtResource( 8 )
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,7 +103,7 @@ margin_left = 685.0
 margin_top = 745.0
 margin_right = 772.0
 margin_bottom = 832.0
-texture_normal = ExtResource( 26 )
+texture_normal = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -115,8 +114,8 @@ margin_top = 755.0
 margin_right = 985.0
 margin_bottom = 845.0
 toggle_mode = true
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 9 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -130,4 +129,7 @@ autoplay = true
 [connection signal="win" from="Grid" to="." method="_on_Grid_win"]
 [connection signal="timeout" from="Grid/EndTurnTimer" to="Grid" method="_on_EndTurnTimer_timeout"]
 [connection signal="animation_finished" from="Witch" to="." method="_on_Witch_animation_finished"]
+[connection signal="pressed" from="TogglePreview" to="." method="_on_TogglePreview_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
