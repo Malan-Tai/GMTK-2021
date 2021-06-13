@@ -20,6 +20,12 @@ signal end_turn
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	type = Constants.element_types.ENEMY
+	if behaviour == all_behaviours.WOLF:
+		hp = 2
+	elif behaviour == all_behaviours.SNAKE:
+		hp = 3
+	elif behaviour == all_behaviours.SLENDER:
+		hp = 4
 
 func do_turn() -> void:
 	var i = 0
