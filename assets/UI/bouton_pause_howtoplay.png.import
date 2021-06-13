@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/son_active.png-4250b2e12fb77a6913e86b06ffce9cf8.stex"
+path="res://.import/bouton_pause_howtoplay.png-7a6a067be43aa799a97a12bcf2b463e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/son_active.png"
-dest_files=[ "res://.import/son_active.png-4250b2e12fb77a6913e86b06ffce9cf8.stex" ]
+source_file="res://assets/UI/bouton_pause_howtoplay.png"
+dest_files=[ "res://.import/bouton_pause_howtoplay.png-7a6a067be43aa799a97a12bcf2b463e1.stex" ]
 
 [params]
 

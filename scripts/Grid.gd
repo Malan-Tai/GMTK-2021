@@ -50,7 +50,7 @@ func _ready():
 		grid.append([])
 		for _y in range(grid_size.y):
 			grid[x].append(null)
-			print(get_cell(x, _y))
+			#print(get_cell(x, _y))
 
 func init(player_coords, enemy_coords, enemy_types, obstacle_coords):
 	action_points = MAX_AP
@@ -170,7 +170,6 @@ func check_patterns():
 							break
 						k += 1
 					if do:
-						print("found")
 						var affected = []
 						var effects = []
 						var i = 0
@@ -183,12 +182,9 @@ func check_patterns():
 									affected.append(Vector2(x, y) + j * v)
 									effects.append(pat.effects.DAMAGE)
 							i += 1
-						print(affected)
-						print(found_patterns[pat])
 						if not pattern_already_found(pat, affected):
 							found_patterns[pat].append(affected)
 							effect_patterns[pat].append(effects)
-							print("added")
 						pat.disabled = false
 					pat.rotate()
 
@@ -355,9 +351,6 @@ func end_turn(force=false):
 	else:
 		action_points = MAX_AP
 		emit_signal("win")
-
-func _on_EndTurn_pressed():
-	end_turn(true)
 
 func _on_EndTurnTimer_timeout():
 	end_turn()

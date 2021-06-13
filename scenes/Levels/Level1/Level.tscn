@@ -6,9 +6,9 @@
 [ext_resource path="res://assets/UI/Fond.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Levels/Level1/Patterns.tscn" type="PackedScene" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://assets/UI/toggle_unactive.png" type="Texture" id=8]
-[ext_resource path="res://assets/UI/toggle_active.png" type="Texture" id=9]
+[ext_resource path="res://assets/UI/restart level v2.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/son_active_v2.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/toggle_unactive_v2.png" type="Texture" id=9]
 [ext_resource path="res://assets/witch/witch_wrath_0007.png" type="Texture" id=10]
 [ext_resource path="res://assets/witch/witch_wrath_0008.png" type="Texture" id=11]
 [ext_resource path="res://assets/witch/witch_wrath_0012.png" type="Texture" id=12]
@@ -24,8 +24,8 @@
 [ext_resource path="res://assets/witch/witch_wrath_0009.png" type="Texture" id=22]
 [ext_resource path="res://assets/witch/witch_wrath_0000.png" type="Texture" id=23]
 [ext_resource path="res://assets/music/woodo main theme.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/UI/son_active.png" type="Texture" id=25]
-[ext_resource path="res://assets/UI/son_unactive.png" type="Texture" id=26]
+[ext_resource path="res://assets/UI/son_unactive_v2.png" type="Texture" id=25]
+[ext_resource path="res://assets/UI/toggle_active_v2.png" type="Texture" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -46,7 +46,7 @@ player_coords = [ Vector2( 3, 3 ), Vector2( 5, 3 ) ]
 enemy_coords = [ Vector2( 4, 4 ) ]
 enemy_types = [ 0 ]
 obstacle_coords = [ Vector2( 2, 0 ), Vector2( 3, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ), Vector2( 2, 1 ), Vector2( 3, 1 ), Vector2( 4, 1 ), Vector2( 5, 1 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 4, 2 ), Vector2( 5, 2 ), Vector2( 0, 3 ), Vector2( 1, 3 ), Vector2( 0, 4 ), Vector2( 1, 4 ), Vector2( 7, 3 ), Vector2( 8, 3 ), Vector2( 7, 4 ), Vector2( 8, 4 ), Vector2( 7, 5 ), Vector2( 8, 5 ), Vector2( 2, 6 ), Vector2( 3, 6 ), Vector2( 4, 6 ), Vector2( 5, 6 ), Vector2( 6, 6 ), Vector2( 2, 7 ), Vector2( 3, 7 ), Vector2( 4, 7 ), Vector2( 5, 7 ), Vector2( 6, 7 ), Vector2( 2, 5 ), Vector2( 6, 3 ) ]
-next_level = "Level2"
+next_level = "res://scenes/Levels/Level2/Level.tscn"
 
 [node name="Patterns" parent="." instance=ExtResource( 6 )]
 
@@ -88,45 +88,35 @@ frames = SubResource( 1 )
 animation = "idle"
 
 [node name="TogglePreview" type="TextureButton" parent="."]
-margin_left = 1383.04
-margin_top = 813.243
-margin_right = 1478.04
-margin_bottom = 880.243
+margin_left = 775.0
+margin_top = 790.0
+margin_right = 889.0
+margin_bottom = 904.0
 toggle_mode = true
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 8 )
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Restart" type="TextureButton" parent="."]
-margin_left = 114.293
-margin_top = 807.987
-margin_right = 178.293
-margin_bottom = 871.987
-texture_normal = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EndTurn" type="TextureButton" parent="."]
-margin_left = 17.4614
-margin_top = 806.4
-margin_right = 81.4614
-margin_bottom = 870.4
+margin_left = 685.0
+margin_top = 745.0
+margin_right = 772.0
+margin_bottom = 832.0
 texture_normal = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Mute" type="TextureButton" parent="."]
-margin_left = 1476.52
-margin_top = 794.243
-margin_right = 1599.52
-margin_bottom = 899.243
+margin_left = 890.0
+margin_top = 755.0
+margin_right = 985.0
+margin_bottom = 845.0
 toggle_mode = true
-texture_normal = ExtResource( 25 )
-texture_pressed = ExtResource( 26 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -142,6 +132,5 @@ autoplay = true
 [connection signal="animation_finished" from="Witch" to="." method="_on_Witch_animation_finished"]
 [connection signal="pressed" from="TogglePreview" to="." method="_on_TogglePreview_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="EndTurn" to="Grid" method="_on_EndTurn_pressed"]
 [connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

@@ -6,9 +6,9 @@
 [ext_resource path="res://assets/UI/Fond.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Levels/Base Level/Patterns.tscn" type="PackedScene" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://assets/UI/toggle_unactive.png" type="Texture" id=8]
-[ext_resource path="res://assets/UI/toggle_active.png" type="Texture" id=9]
+[ext_resource path="res://assets/UI/son_active_v2.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/toggle_unactive_v2.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/son_unactive_v2.png" type="Texture" id=9]
 [ext_resource path="res://assets/witch/witch_wrath_0007.png" type="Texture" id=10]
 [ext_resource path="res://assets/witch/witch_wrath_0008.png" type="Texture" id=11]
 [ext_resource path="res://assets/witch/witch_wrath_0012.png" type="Texture" id=12]
@@ -24,8 +24,8 @@
 [ext_resource path="res://assets/witch/witch_wrath_0009.png" type="Texture" id=22]
 [ext_resource path="res://assets/witch/witch_wrath_0000.png" type="Texture" id=23]
 [ext_resource path="res://assets/music/woodo main theme.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/UI/son_active.png" type="Texture" id=25]
-[ext_resource path="res://assets/UI/son_unactive.png" type="Texture" id=26]
+[ext_resource path="res://assets/UI/toggle_active_v2.png" type="Texture" id=25]
+[ext_resource path="res://assets/UI/restart level v2.png" type="Texture" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -88,45 +88,35 @@ frames = SubResource( 1 )
 animation = "idle"
 
 [node name="TogglePreview" type="TextureButton" parent="."]
-margin_left = 1383.04
-margin_top = 813.243
-margin_right = 1478.04
-margin_bottom = 880.243
+margin_left = 775.0
+margin_top = 790.0
+margin_right = 889.0
+margin_bottom = 904.0
 toggle_mode = true
-texture_normal = ExtResource( 9 )
+texture_normal = ExtResource( 25 )
 texture_pressed = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Restart" type="TextureButton" parent="."]
-margin_left = 114.293
-margin_top = 807.987
-margin_right = 178.293
-margin_bottom = 871.987
-texture_normal = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EndTurn" type="TextureButton" parent="."]
-margin_left = 17.4614
-margin_top = 806.4
-margin_right = 81.4614
-margin_bottom = 870.4
-texture_normal = ExtResource( 7 )
+margin_left = 685.0
+margin_top = 745.0
+margin_right = 772.0
+margin_bottom = 832.0
+texture_normal = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Mute" type="TextureButton" parent="."]
-margin_left = 1476.52
-margin_top = 794.243
-margin_right = 1599.52
-margin_bottom = 899.243
+margin_left = 890.0
+margin_top = 755.0
+margin_right = 985.0
+margin_bottom = 845.0
 toggle_mode = true
-texture_normal = ExtResource( 25 )
-texture_pressed = ExtResource( 26 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,8 +130,4 @@ autoplay = true
 [connection signal="win" from="Grid" to="." method="_on_Grid_win"]
 [connection signal="timeout" from="Grid/EndTurnTimer" to="Grid" method="_on_EndTurnTimer_timeout"]
 [connection signal="animation_finished" from="Witch" to="." method="_on_Witch_animation_finished"]
-[connection signal="pressed" from="TogglePreview" to="." method="_on_TogglePreview_pressed"]
-[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="EndTurn" to="Grid" method="_on_EndTurn_pressed"]
-[connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

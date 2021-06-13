@@ -78,7 +78,6 @@ func base_plan_turn():
 func wolf_plan_turn():
 	var closest:Vector2 = grid.closest_player(position)
 	var grid_pos:Vector2 = grid.world_to_map(position)
-	var dist = closest.distance_squared_to(grid_pos)
 	var float_dir = grid_pos.direction_to(closest)
 	var int_dir
 	if abs(float_dir.x) > abs(float_dir.y):
