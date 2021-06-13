@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/witch/witch_wrath_0002.png" type="Texture" id=3]
 [ext_resource path="res://assets/UI/Fond.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Levels/Level1-old/Patterns.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Levels/Level1/Patterns.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/UI/restart level v2.png" type="Texture" id=7]
 [ext_resource path="res://assets/UI/son_active_v2.png" type="Texture" id=8]
 [ext_resource path="res://assets/UI/toggle_unactive_v2.png" type="Texture" id=9]
