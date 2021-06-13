@@ -234,6 +234,8 @@ func is_cell_vacant(pos=Vector2(), direction=Vector2(), type=Constants.element_t
 
 	if grid_pos.x < grid_size.x and grid_pos.x >= 0:
 		if grid_pos.y < grid_size.y and grid_pos.y >= 0:
+			if get_cell(grid_pos.x, grid_pos.y) < 0:
+				return false
 			var ins:TileElement = grid[grid_pos.x][grid_pos.y]
 			return ins == null or (ins.pushable and is_cell_vacant(ins.position, direction.normalized())) or Constants.can_fusion(type, ins.type)
 	return false
